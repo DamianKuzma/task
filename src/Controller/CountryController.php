@@ -28,7 +28,7 @@ class CountryController extends AbstractController
 
         return $this->json([
             'country' => $country->getName(),
-            'cities' => $cities,
+            'cities' => $cities ?? null,
         ]);
     }
 }
