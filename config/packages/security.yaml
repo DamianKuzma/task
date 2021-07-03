@@ -5,7 +5,7 @@ security:
             memory:
                 users:
                     api:
-                        password: 'superadminpw'
+                        password: '%env(USER_PASSWORD)%'
                         roles: ['ROLE_SUPER_ADMIN']
     firewalls:
         dev:
