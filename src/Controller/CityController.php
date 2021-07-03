@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\City;
+use App\Exception\AccessDeniedException;
 use App\Form\CityFormType;
 use App\Service\CityService;
 use App\Validator\CityValidator;
@@ -20,6 +21,11 @@ class CityController extends AbstractController
      */
     public function create(Request $request, CityValidator $validator, CityService $cityService): Response
     {
+        if (null === $this->getUser()) {
+
+            throw new AccessDeniedException('Access denied. No user found!');
+        }
+
         $city = new City();
         $form = $this->createForm(CityFormType::class, $city, ['csrf_protection' => false]);
         $form->submit(json_decode($request->getContent(), true));

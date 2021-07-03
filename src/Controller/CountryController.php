@@ -22,9 +22,13 @@ class CountryController extends AbstractController
             throw new CountryException(sprintf('Country with canonical name %s not found!', $canonicalName));
         }
 
+        foreach ($country->getCities() as $city) {
+            $cities[] = $city->getName();
+        }
+
         return $this->json([
             'country' => $country->getName(),
-            'cities' => json_encode($country->getCities()),
+            'cities' => $cities,
         ]);
     }
 }

@@ -20,7 +20,7 @@ class City
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank(message="Name fiels should not be null!")
+     * @Assert\NotBlank(message="Name field should not be null!")
      */
     private $name;
 
