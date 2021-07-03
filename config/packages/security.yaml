@@ -1,7 +1,12 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        in_memory:
+            memory:
+                users:
+                    api:
+                        password: 'superadminpw'
+                        roles: ['ROLE_SUPER_ADMIN']
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CityRepository::class)
@@ -18,12 +19,15 @@ class City
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Name fiels should not be null!")
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="cities")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="These field should not be null!")
      */
     private $country;
 
